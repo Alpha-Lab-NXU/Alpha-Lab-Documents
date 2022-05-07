@@ -5,7 +5,4 @@ Here are some documents for Alpha-Lab in NXU.
 
 * Liuhangming
 * Liyiwei
-* liwujun
-
-
-
+* liwujun  
