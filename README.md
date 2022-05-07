@@ -6,4 +6,4 @@ Here are some documents for Alpha-Lab in NXU.
 * Johnson Liu
 * Liyiwei
 * Liwujun  
-* Yangzhihang
+* yangzhihang
