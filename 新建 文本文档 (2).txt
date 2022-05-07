@@ -1,0 +1,29 @@
+[1]王红卫,马勇,谢勇,郭敏
+.基于平滑A~*算法的移动机器人路径规划[J]
+.同济大学学报(自然科学版),
+2010,38(11):1647-1650+1655.
+
+
+
+int a[3],count=0,dx,i;
+    char x;
+    while(!feof(fi))
+    {
+        fscanf(fi,"%c",&x);
+        printf("%c ",x);
+        if(x>='0'&&x<='9')
+        {   
+            a[count]=x-'0';
+            count++;
+        }
+        printf("%d %d %d\n",count,a[count-1],x-'0');
+        if(count==3)
+        {
+            dx=0;
+            for(i=0;i<3;i++)
+                dx=dx*10+a[i];
+            count=0;
+            fprintf(fo,"%d ",dx);
+        }
+    }
+    

@@ -1,0 +1,1079 @@
+输入两个日期比大小
+#include<stdio.h>
+struct date_rec
+  {
+    int day ;
+    int month ;
+    int year ;
+  }date1,date2;
+  int get();
+  int main()
+  {
+      int geta=get();
+      if(geta==0)
+        printf("两个日期相同！");
+    else if(geta==1)
+        printf("第一个日期晚于第二个日期！");
+    else
+        printf("第一个日期早于第二个日期！");
+      return 0;
+  }
+  int get()
+  {
+      printf("请输入当前日期（年 月 日）：");
+      scanf("%d %d %d",&date1.year,&date1.month,&date1.day);
+      printf("请输入当前日期（年 月 日）：");
+      scanf("%d %d %d",&date2.year,&date2.month,&date2.day);
+      printf("当前日期：%d年%d月%d日！\n",date1.year,date1.month,date1.day);
+      printf("当前日期：%d年%d月%d日！\n",date2.year,date2.month,date2.day);
+      if(date1.year>date2.year) return 1;
+      if(date1.year<date2.year) return -1;
+      if(date1.month>date2.month) return 1;
+      if(date1.month<date2.month) return -1;
+      if(date1.day>date2.day) return 1;
+      if(date1.day<date2.day) return -1;
+      return 0;
+  }
+
+
+
+
+一只大象口渴了，要喝20升水才能解渴，但现在只有一个深h厘米，底面半径为r厘米的小圆桶(h和r都是整数)。问大象至少要喝多少桶水才会解渴。(设PAI=3.14159)
+#include<stdio.h>
+#define PAI 3.14159
+int main()
+{
+    int h,r;
+    printf("please input the height and the radius:\n");
+    scanf("%d,%d",&h,&r);
+    printf("%d",(int)(20000/(PAI*r*r*h)+1));
+}
+
+输入：工资数，小时数（整数，空格分隔），
+输出：工资/小时数（精确到小数点后2位），并根据四舍五入取整，然后将取整的数平方后计算一共有几位，后三位分别是什么。
+#include<stdio.h>
+int main()
+{
+    int a,h;
+    scanf("%d %d",&a,&h);
+    printf("%.2f\n",1.0*a/h);
+    int d=(int)(1.0*a/h+0.5);
+    printf("%d\n",d);
+    long int count=0,d2=d*d;
+    int arr[10];
+    int i=0;
+    while(d2>0)
+    {
+        arr[i]=d2%10;
+        d2/=10;
+        count++;
+        i++;
+    }
+    printf("%d\n",count);
+    printf("%d %d %d\n",arr[2],arr[1],arr[0]);
+}
+计算并输出一个三位整数的个位、十位和百位数字之和。
+#include<stdio.h>
+int main()
+{
+    printf("请输入一个三位整数：");
+    int x,count=0,sum=0;
+    int arr[3];
+    scanf("%d",&x);
+    while(x>0)
+    {
+        arr[count++]=x%10;
+        sum=sum+arr[count-1];
+        x/=10;
+    }
+    printf("b2=%d, b1=%d, b0=%d, sum=%d\n",arr[2],arr[1],arr[0],sum);
+}
+计算体指数
+从键盘输入某人的身高（以厘米为单位，如174cm）和体重（以公斤为单位，如70公斤），将身高（以米为单位，如1.74m）和体重（以斤为单位，如140斤）输出在屏幕上，并按照以下公式计算并输出体指数，要求结果保留到小数点后2位。
+假设体重为w公斤，身高为h米，则体指数的计算公式为：t=w/(h*h)
+#include<stdio.h>
+int main()
+{
+    printf("Input weight, height:\n");
+    int w,h;
+    scanf("%d,%d",&w,&h);
+    printf("weight=%d\n",2*w);
+    printf("height=%.2f\n",h/100.0);
+    printf("t=%.2f\n",w*1.0/(h*h/10000.0));
+}
+从键盘任意输入一个3位整数，编程计算并输出它的逆序数（忽略整数前的正负号）。例如，输入-123，则忽略负号，由123分离出其百位1、十位2、个位3，然后计算3*100+2*10+1 = 321，并输出321。
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    printf("Input x:");
+    int x;
+    scanf("%d",&x);
+    x=abs(x);
+    int arr[3];
+    int i=0;
+    while(x>0)
+    {
+        arr[i++]=x%10;
+        x/=10;
+    }
+    printf("y = %d\n",arr[0]*100+arr[1]*10+arr[2]);
+}
+从键盘任意输入a，b，c的值，编程计算并输出一元二次方程ax2+bx+c=0的根（较小的先输出，即先输出p-q，后输出p+q）。根据一元二次方程的求根公式，令
+p=−b2a,q=b2−4ac√2a
+假设a，b，c的值能保证方程有两个不相等的实根（即b2-4ac>0）
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    printf("Please enter the coefficients a,b,c:");
+    float a,b,c;
+    scanf("%f,%f,%f",&a,&b,&c);
+    float p=-b/(2*a),q=sqrt(b*b-4*a*c)/(2*a);
+
+    printf("x1=%7.4f, x2=%7.4f\n",p-q,p+q);
+}
+
+身高预测。
+每个做父母的都关心自己孩子成人后的身高，据有关生理卫生知识与数理统计分析表明，影响小孩成人后的身高的因素包括遗传、饮食习惯与体育锻炼等。小孩成人后的身高与其父母的身高和自身的性别密切相关。
+#include<stdio.h>
+int main()
+{
+    float faHeight,moHeight;
+    char sex,sports,diet;
+    printf("Are you a boy(M) or a girl(F)?");
+    scanf("%c",&sex);
+    printf("Please input your father's height(cm):");
+    scanf("%f",&faHeight);
+    printf("Please input your mother's height(cm):");
+    scanf("%f",&moHeight);
+    printf("Do you like sports(Y/N)?");
+    getchar();
+    scanf("%c",&sports);
+    printf("Do you have a good habit of diet(Y/N)?");
+    getchar();
+    scanf("%c",&diet);
+    if(sex=='M')
+    {
+        if(sports=='Y'&&diet=='Y')
+            printf("Your future height will be %.0f(cm)",(faHeight + moHeight) * 0.54*1.02*1.015);
+        else if(sports=='Y'&&diet=='N')
+            printf("Your future height will be %.0f(cm)",(faHeight + moHeight) * 0.54*1.02);
+        else if(sports=='N'&&diet=='N')
+            printf("Your future height will be %.0f(cm)",(faHeight + moHeight) * 0.54);
+        else
+            printf("Your future height will be %.0f(cm)",(faHeight + moHeight) * 0.54*1.015);
+    }else{
+        if(sports=='Y'&&diet=='Y')
+            printf("Your future height will be %.0f(cm)",(faHeight * 0.923 + moHeight) / 2*1.015*1.02);
+        else if(sports=='Y'&&diet=='N')
+            printf("Your future height will be %.0f(cm)",(faHeight * 0.923 + moHeight) / 2*1.02);
+        else if(sports=='N'&&diet=='N')
+            printf("Your future height will be %.0f(cm)",(faHeight * 0.923 + moHeight) / 2);
+        else
+            printf("Your future height will be %.0f(cm)",(faHeight * 0.923 + moHeight) / 2*1.015);
+    }
+    return 0;
+}
+
+
+满足x^2+y^2=Z^2的正整数x，y，z称为一组勾股数，设计求m值以内的勾股数组(按x从小到大输出，每行输出3组)。其中m由键盘获取。
+#include<stdio.h>
+int main()
+{
+    printf("请输入上限值m:");
+    printf("m以内的勾股数组有:\n");
+    int m,count=0;
+    scanf("%d",&m);
+    int i,j,k;
+    for(i=3;i<m;i++)
+    {
+        for(j=i;j<m;j++)
+        {
+            for(k=j+1;k<=m;k++)
+            {
+                if(i*i+j*j==k*k)
+                {
+                    count++;
+                    printf("(%d  %d  %d)\t",i,j,k);
+                    if(count%3==0)
+                        printf("\n");
+                }
+            }
+        }
+    }
+    printf("\n共%d组勾股数.",count);
+    return 0;
+}
+输入一个正整数，要求以相反的顺序输出该数。用递归方法实现。
+#include<stdio.h>
+int Re(int x);
+int main()
+{
+    printf("Enter number:");
+   int x;
+  scanf("%d",&x);
+  printf("%d",Re(x));
+  return 0;
+}
+int Re(int x)
+{
+    static int i=0;
+    int j,k;
+    k=x%10;
+    j=x/10;
+    i=i*10+k;
+    if(j==0)
+        return i;
+    Re(j);
+}
+编程计算并输出球的体积和表面积，球的半径r的值由用户从键盘输入。圆周率取3.14159
+#include<stdio.h>
+#define PI 3.14159
+int main()
+{
+    printf("Input r:");
+    double r;
+    scanf("%lf",&r);
+    printf("surface = %lf\n",4*PI*r*r);
+    printf("volume = %lf\n",4*PI*r*r*r/3);
+}
+
+程序：显示法定格式的日期合同和其他法律文档中经常使用下列日期格式：
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    printf("Enter date (mm/dd/yy):");
+    int year,month,day;
+    scanf("%d/%d/%d",&month,&day,&year);
+    if(month>12||month<1||day>31||day<1)
+    {
+        printf("Input error!\n");
+        exit(0);
+    }
+    printf("Dated this %d",day);
+    if(day==11||day==12||day==13)
+        printf("th");
+    else
+        switch(day%10)
+        {
+            case 1:printf("st");break;
+            case 2:printf("nd");break;
+            case 3:printf("rd");break;
+            default:printf("th");
+        }
+    printf(" day of ");
+    switch(month)
+    {
+        case 1:printf("January");break;
+        case 2:printf("February");break;
+        case 3:printf("March");break;
+        case 4:printf("April");break;
+        case 5:printf("May");break;
+        case 6:printf("June");break;
+        case 7:printf("July");break;
+        case 8:printf("Aguest");break;
+        case 9:printf("September");break;
+        case 10:printf("October");break;
+        case 11:printf("November");break;
+        case 12:printf("December");break;
+    }
+    printf(", 19%.2d.\n",year);
+    return 0;
+}
+编写程序，打印输出如下图所示的乘法九九表：
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    printf("Input n:\n");
+    int n;
+    scanf("%d",&n);
+    int i,j;
+    for(i=1;i<=n;i++)
+        printf("%4d",i);
+    printf("\n");
+    for(i=1;i<=n;i++)
+        printf("   -");
+    printf("\n");
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<i;j++)
+            printf("    ");
+        for(j=i;j<=n;j++)
+            printf("%4d",i*j);
+        printf("\n");
+    }
+    return 0;
+}
+牛顿迭代法
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main()
+{
+    float x,x1,a;
+    printf("Input a=? ");
+    scanf("%f",&a);
+    x1=a;
+    int count=0;
+    do{
+        count++;
+        x=x1;
+        x1=(x+a/x)/2;
+    }while(fabs(x1-x)>=1E-5&&count<=20);
+    printf("\na=%.6f,x=%.6f,i=%d",a,x1,count);
+    return 0;
+}
+
+统计用户输入
+从键盘读取用户输入直到遇到#字符，编写程序统计读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。(要求用getchar()输入字符)
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    char c;
+    int cs=0,cn=0,co=0;
+    do{
+        c=getchar();
+        if(c=='#')
+            break;
+        else if(c==' ')
+            cs++;
+        else if(c=='\n')
+            cn++;
+        else
+            co++;
+    }while(1);
+    printf("space: %d,newline: %d,others: %d\n",cs,cn,co);
+    return 0;
+}
+从键盘任意输入一个4位整数,编程计算并输出它的逆序数#include<stdio.h>
+int main()
+{
+    int i;
+    scanf("%d",&i);
+    int newnum=0;
+   
+    while(i!=0)
+    {
+        newnum=newnum*10+i%10;
+        i/=10;
+    }
+    printf("%d",newnum);
+}
+从键盘任意输入一个3位整数，编程计算并输出它的逆序数
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    printf("Input x:");
+    int i;
+    scanf("%d",&i);
+    i=abs(i);
+    int newnum=0;
+   
+    while(i!=0)
+    {
+        newnum=newnum*10+i%10;
+        i/=10;
+    }
+    printf("y = %d",newnum);
+}
+使用const常量定义圆周率pi
+#include<stdio.h>
+int main()
+{
+    const double pi=3.14159;
+    printf("Input r:");
+    double r;
+    scanf("%lf",&r);
+    printf("printf WITHOUT width or precision specifications:\n");
+    printf("circumference = %f, area = %f\n",2*pi*r,pi*r*r);
+    printf("printf WITH width and precision specifications:\n");
+    printf("circumference = %7.2f, area = %7.2f\n",2*pi*r,pi*r*r);
+    return 0;
+}
+逆序数的拆分计算
+从键盘输入一个4位数的整数，编程计算并输出它的逆序数
+#include<math.h>
+int main()
+{
+    int i;
+    printf("Input x:\n");
+    scanf("%d",&i);
+    i=abs(i);
+    int newnum=0;
+   
+    while(i!=0)
+    {
+        newnum=newnum*10+i%10;
+        i/=10;
+    }
+    printf("y=%d\n",newnum);
+    int l,r;
+    l=newnum/100;
+    r=newnum%100;
+    printf("a=%d,b=%d\n",l,r);
+    printf("result=%d\n",l*l+r*r);
+}
+用递归法将一个整数n转换成字符串
+#include<stdio.h>
+void convert(int n);
+int main()
+{
+    printf("\n输入整数：");
+    int n;
+    scanf("%d",&n);
+printf("\n输出是：");
+    if(n<0)
+    {
+        printf("-");
+        convert(-n);
+    }else
+        convert(n);
+    return 0;
+}
+void convert(int n)
+{
+   int i;
+   if((i=n/10)!=0)
+    convert(i);
+    putchar('0'+n%10);
+}
+用递归方法编程计算输出Fibonacci数列
+#include<stdio.h>
+int count;
+int Fib(int n);
+int main()
+{
+    int i,n,f;
+    printf("Input n:");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        count=0;
+        f=Fib(i);
+        printf("Fib(%d)=%d, count=%d\n",i,f,count);
+    }
+    return 0;
+}
+int Fib(int n)
+{
+    count++;
+    if(n==0) return 0;
+    else if(n==1) return 1;
+    else return Fib(n-1)+Fib(n-2);
+}
+采用递归方法计算x的n次方。
+#include<stdio.h>
+int xn(int n);
+int x;
+int main()
+{
+    printf("x=? n=?");
+    int n;
+    scanf("%d%d",&x,&n);
+    printf("%d**%d=%d\n",x,n,xn(n));
+    return 0;
+}
+int xn(int n)
+{
+    if(n==1) return x;
+    else return x*xn(n-1);
+}
+汉诺塔（Hanoi）是必须用递归方法才能解决的经典问题。
+#include <stdio.h>
+int main()
+{
+    int hanoi(int,char,char,char);
+    int n,counter;
+    printf("Input the number of disks:");
+    scanf("%d",&n);
+    printf("Steps of moving %d disks from A to B by means of C:\n",n);
+    counter=hanoi(n,'A','C','B');
+    return 0;
+}
+int hanoi(int n,char x,char y,char z)
+{
+    int move(char,int,char);
+    if(n==1)
+        move(x,1,z);
+    else
+    {
+        hanoi(n-1,x,z,y);
+        move(x,n,z);
+        hanoi(n-1,y,x,z);
+    }
+    return 0;
+}
+int move(char getone,int n,char putone)
+{
+    
+    printf( "Move %d: from %c to %c\n",n,getone,putone);
+    
+    return 0;
+}
+
+请用递归的方法计算下列函数的值
+#include<stdio.h>
+#include<math.h>
+double x;
+double px(int n);
+int main()
+{
+    printf("Enter X and N:");
+    int n;
+    scanf("%lf%d",&x,&n);
+    printf("px=%f\n",px(n));
+    return 0;
+}
+double px(int n)
+{
+    if(n==1) return x;
+    else return pow(-1,n-1)*pow(x,n)+px(n-1);
+}
+
+写一个函数，如果它首次被调用，则返回字母A，第二次被调用，则返回字母B，第三次调用，则返回字母C，以此类推。
+#include<stdio.h>
+char call_times(void);
+int main()
+{
+    printf("第一次调用返回字符%c!\n",call_times());
+    printf("第二次调用返回字符%c!\n",call_times());
+    printf("第三次调用返回字符%c!\n",call_times());
+}
+char call_times()
+{
+    static int x=0;
+    return 'A'+x++;
+}
+
+*验证卡布列克运算
+#include<stdio.h>
+void Fun(int n);
+int minSort(int n);
+int maxSort(int n);
+int main()
+{
+    printf("Enter number:");
+    int n;
+    scanf("%d",&n);
+    Fun(n);
+    return 0;
+}
+void Fun(int n)
+{
+    if(n==6174) return;
+    int max=maxSort(n);
+    int min=minSort(n);
+    int result=maxSort(n)-minSort(n);
+    static int count=1;
+    printf(" [%d]:%d-%d=%d\n",count++,max,min,result);
+    Fun(result);
+} 
+int maxSort(int n)
+{
+    int a[4];
+    int i=0;
+    while(n>0)
+    {
+        a[i]=n%10;
+        n=n/10;
+        i++;
+    }
+    int j,temp;
+    for(i=0;i<4;i++)
+        for(j=i+1;j<4;j++)
+        {
+            if(a[i]<a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    int sum=0;
+    for(i=0;i<4;i++)
+        sum=sum*10+a[i];
+    return sum;
+}
+int minSort(int n)
+{
+    int a[4];
+    int i=0;
+    while(n>0)
+    {
+        a[i]=n%10;
+        n=n/10;
+        i++;
+    }
+    int j,temp;
+    for(i=0;i<4;i++)
+        for(j=i+1;j<4;j++)
+        {
+            if(a[i]>a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    int sum=0;
+    for(i=0;i<4;i++)
+        sum=sum*10+a[i];
+    return sum;
+}
+
+
+有一个字符串，包含n个字符。写一个函数，将此字符串中从第m个字符开始的全部字符复制成为另一个字符串。
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char s[20],s1[20];
+    int n;
+    printf("请输入一个字符串：\n");
+    gets(s);
+    printf("从第几个字符开始复制？");
+    scanf("%d",&n);
+    strcpy(s1,s+n-1);
+    printf("复制结果为：");
+    puts(s1);
+}
+
+
+纯数字字符串检验
+#include<stdio.h>
+#include<ctype.h>
+int IsAllDigit(char p[]);
+int main()
+{
+    printf("Please input a string:\n");
+    char s[20];
+    gets(s);
+    if(IsAllDigit(s))
+        printf("The string is a digit string.");
+    else
+        printf("The string is not a digit string.");
+}
+int IsAllDigit(char p[])
+{
+    char *pp=p;
+    while(*pp!='\0')
+    {
+        if(!isdigit(*pp))
+            return 0;
+        pp++;
+    }
+    return 1;
+}
+
+下列给定程序中，函数fun()的功能是求出数组中最小数和次最小数，并把最小数和a[0]中的数对调，次最小数和a[1]中的数对调。
+#include <stdio.h>
+#define N 20
+void fun(int *a,int n)
+{
+    int i, m, t, k;
+    for(i=0; i<2; i++)
+    {
+        m=i;
+        for(k=i; k<n; k++)
+           if(a[k]<a[m])
+            m=k;
+        t=a[m];
+        a[m]=a[i];
+        a[i]=t;
+    }
+}
+int main()
+{
+    int b[N]={11,5,12,0,3,6,9,7,10,8},n=10,i;
+    for(i=0; i<n; i++)
+        printf("%d ",b[i]);
+    printf("\n");
+    fun(b,n);
+    for(i=0; i<n; i++)
+        printf("%d ", b[i]);
+    printf("\n");
+    return 0;
+}
+请用指针数组编程实现按奥运会参赛国的国名在字典中的顺序对其入场次序进行排序。
+#include  <stdio.h>
+#include <string.h>
+#define   MAX_LEN  10
+#define   N         150
+void SortString(char *ptr[], int n);
+main()
+{
+    char name[N][MAX_LEN];
+    int    i, n;
+    char   *pStr[N];
+    printf("How many countries?\n");
+    scanf("%d",&n);
+    getchar();
+    printf("Input their names:\n");
+    for (i=0; i<n; i++)
+    {
+        pStr[i]=name[i];
+        gets(pStr[i]);
+    }
+    SortString(pStr, n);
+    printf("Sorted results:\n");
+    for (i=0; i<n; i++)
+    {
+        puts(pStr[i]);
+    }
+}
+ 
+void SortString(char *ptr[], int n)
+{
+    int    i, j;
+    char  *temp=NULL;
+    for (i=0; i<n-1; i++)
+    {
+        for (j = i+1; j<n; j++)
+        {
+            if (strcmp(ptr[i],ptr[j])>0)
+            {
+                temp = ptr[i];
+                ptr[i] = ptr[j];
+                ptr[j] = temp;
+            }
+        }
+    }
+}
+产生动态数组，编写程序，输入数组大小后，通过动态分配内存函数malloc产生数组。
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    printf("Enter array size:");
+    int n;
+    scanf("%d",&n);
+    int *p=(int*)malloc(n*sizeof(int));
+    int i;
+    for(i=0;i<8;i++)
+    {
+        *(p+i)=10*i;
+        printf("array[%d]=%d\n",i,*(p+i));
+    }
+    return 0;
+}
+
+
+
+打印出以下图案：
+#include<stdio.h>
+int main()
+{
+    int i,j,k;
+    for(i=0;i<4;i++)
+    {
+        for(j=3-i;j>0;j--)
+            printf("   ");
+        for(k=i*2+1;k>0;k--)
+            {
+                if(k==1)
+                    printf("*");
+                else
+                    printf("*  ");
+            }
+        printf("\n");
+    }
+    for(i=2;i>=0;i--)
+    {
+        for(j=3-i;j>0;j--)
+            printf("   ");
+        for(k=i*2+1;k>0;k--)
+            {
+                if(i==0)
+                {
+                    printf("*");
+                    break;
+                }
+                if(k==1)
+                    printf("*");
+                else
+                    printf("*  ");
+            }
+        printf("\n");
+    }
+    return 0;
+}
+n个人围成一圈，顺序编号。从第一个人开始从1到m报数，凡报到m的人退出圈子，编程求解最后留下的人的初始编号。
+样例输入：（第一行输入）
+6 3（两个输入数据之间有空格）
+样例输出：（换行输出）
+1
+
+
+
+
+
+在一个有序(按非递减顺序)的链表中插入一个元素为x的结点，使插入后的链表仍然有序（链表数据域为整型数，初始时输入6个元素）。
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct s{
+    int data;
+    struct s *next;
+}S;
+void Insert(S *head,int x)
+{
+    S *pr=head->next,*p=NULL,*temp=head;
+    p=(S*)malloc(sizeof(S));
+    if(p==NULL)
+    {
+        printf("error\n");
+        exit(0);
+    }
+    p->next=NULL;
+    p->data=x;
+    while(pr->data<x&&pr->next!=NULL)
+    {
+        temp=pr;
+        pr=pr->next;
+    }
+    if(pr->data>=x)
+    {
+        p->next=temp->next;
+        temp->next=p;
+    }else
+    {
+        pr->next=p;
+    }
+}
+void Traversal(S *head)
+{
+    S *t=head->next;
+    while(t!=NULL)
+    {
+        printf("%d ",t->data);
+        t=t->next;
+    }
+    printf("\n");
+}
+int main()
+{
+    S *head=NULL,*last=NULL,*p=NULL;
+    head=(S*)malloc(sizeof(S));
+    last=head;
+    int i;
+    printf("输入数组6个元素的值。\n");
+    for(i=0;i<6;i++)
+    {
+        p=(S*)malloc(sizeof(S));
+        scanf("%d",&(p->data));
+        last->next=p;
+        last=p;
+    }
+    last->next=NULL;
+    printf("此链表各个结点的数据域为：");
+    Traversal(head);
+    printf("输入要插入的数据x:");
+    int x;
+    scanf("%d",&x);
+    Insert(head,x);
+    printf("插入后链表各个结点的数据域为：");
+    Traversal(head);
+    return 0;
+}
+
+建立一个链表，使链表中从头到尾的结点数据域依次是一个数组的各个元素的值。程序先建立链表然后再遍历输出（假定链表和数组均有6个整型元素）。
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct link{
+    int data;
+    struct link *next;
+}Link;
+void Traversal(Link *head)
+{
+    Link *pr=head->next;
+    while(pr!=NULL)
+    {
+        printf("%d ",pr->data);
+        pr=pr->next;
+    }
+}
+int main()
+{
+    int a[6];
+    int i;
+    printf("输入数组6个元素的值。\n");
+    for(i=0;i<6;i++)
+        scanf("%d",&a[i]);
+    Link *head=NULL,*p=NULL,*last=NULL;
+    head=(Link*)malloc(sizeof(Link));
+    last=head;
+    for(i=0;i<6;i++)
+    {
+        p=(Link*)malloc(sizeof(Link));
+        p->data=a[i];
+        last->next=p;
+        last=p;
+    }
+    last->next=NULL;
+    printf("此链表各个结点的数据域为：");
+    Traversal(head);
+    return 0;
+}
+n个人围成一圈，顺序编号。从第一个人开始从1到m报数，凡报到m的人退出圈子，编程求解最后留下的人的初始编号。
+样例输入：（第一行输入
+#include<stdio.h>
+int Go(int n,int a[],int step)
+{
+    while(step--)
+    {
+       do{
+        n=(n+1)%6;
+       }while(a[n]==0);
+    }
+    a[n]=0;
+    return n;
+}
+int main()
+{
+    int m,n;
+	scanf("%d %d",&m,&n);
+	int a[m];
+	int i;
+	for(i=0;i<6;i++)
+        a[i]=1;
+	int p=5;
+	while(m>1)
+    {
+        p=Go(p,a,n);
+        m--;
+    }
+    printf("样例输出：\n");
+    for(i=0;i<6;i++)
+    {
+        if(a[i]==1)
+        printf("%d",i+1);
+        break;
+    }
+	return 0;
+}
+#include<stdio.h>
+#include<stdlib.h>
+#define max 100
+int loop[max+10];
+int main(){	    	  
+    int n,m,i;
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;i++)
+    loop[i]=i+1;
+    int dest=0;
+    for(i=0;i<n;i++){	    	  
+        int count=0;
+        while(count<m){	    	  
+            while(loop[dest]==0)
+            dest=(dest+1)%n;
+            count++;
+            dest=(dest+1)%n;
+        }
+        dest--;
+        if(dest<0)
+        dest=n-1;
+        if(i==n-1)
+        printf("%d\n",loop[dest]);
+        loop[dest]=0;
+    }
+    return 0;
+  }
+
+将一个链表中元素值为x的结点删除
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct link{
+    int data;
+    struct link *next;
+}Link;
+void Delete(Link *head,int x)
+{
+    Link *pr=head->next,*temp=head;
+    while(pr->data!=x&&pr->next!=NULL)
+    {
+        temp=pr;
+        pr=pr->next;
+    }
+    if(pr->data==x)
+    {
+        temp->next=pr->next;
+    }else
+    {
+        printf("error");
+        return;
+    }
+}
+void Traversal(Link *head)
+{
+    Link *pr=head->next;
+    while(pr!=NULL)
+    {
+        printf("%d ",pr->data);
+        pr=pr->next;
+    }
+printf("\n");
+}
+int main()
+{
+    int a[6];
+    int i;
+    printf("输入数组6个元素的值。\n");
+    for(i=0;i<6;i++)
+        scanf("%d",&a[i]);
+    Link *head=NULL,*p=NULL,*last=NULL;
+    head=(Link*)malloc(sizeof(Link));
+    last=head;
+    for(i=0;i<6;i++)
+    {
+        p=(Link*)malloc(sizeof(Link));
+        p->data=a[i];
+        last->next=p;
+        last=p;
+    }
+    last->next=NULL;
+    printf("此链表各个结点的数据域为：");
+    Traversal(head);
+    int x;
+    printf("输入要删除的数据x: ");
+    scanf("%d",&x);
+    Delete(head,x);
+    printf("删除后链表各个结点的数据域为：");
+    Traversal(head);
+    return 0;
+}
+反向输出一个链表（共5个整型元素）。
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct link{
+    int data;
+    struct link *next;
+}Link;
+void reverse(Link *p)
+{
+    if(p->next!=NULL)
+        reverse(p->next);
+    printf("The value is ==>%d\n",p->data);
+}
+
+int main()
+{
+    Link *head=NULL,*p=NULL,*last=NULL;
+    head=(Link*)malloc(sizeof(Link));
+    last=head;
+    int data,i;
+    printf("please input 5 data==>\n");
+    for(i=0;i<5;i++)
+    {
+        p=(Link*)malloc(sizeof(Link));
+        scanf("%d",&data);
+        p->data=data;
+        last->next=p;
+        last=p;
+    }
+    last->next=NULL;
+    reverse(head->next);
+}
